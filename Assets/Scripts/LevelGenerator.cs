@@ -27,9 +27,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] tileList;
     public GameObject[,] tiles;
     //TODO
-    // MAYBE REWRITE THOSE SO IT DOES THE GENERATION PASS AND THEN WE DO A ROTATION PASS THAT WAY ITS CLEANER AND THE GENERATION DOESNT BUG OUT
 
-    // Start is called before the first frame update
     void Start()
     {
         //Array of Gameobjects rather than just the tilemap
@@ -72,9 +70,15 @@ public class LevelGenerator : MonoBehaviour
                         break;
                     case 5:
                         //pellet
+                        tile = (GameObject)Instantiate(tileList[5], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
+                        tile.name = levelMap[x, y].ToString();
+                        tiles[x, y] = tile;
                         break;
                     case 6:
                         //Power Pellet
+                        tile = (GameObject)Instantiate(tileList[6], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
+                        tile.name = levelMap[x, y].ToString();
+                        tiles[x, y] = tile;
                         break;
                     case 7:
                         //T Junction
@@ -206,11 +210,61 @@ public class LevelGenerator : MonoBehaviour
             yCount = -1;
             array += "\n";
             xCount++;
+
         }
 
-        int counterPart = 0;
-        int tileType = 0;
-        //Vector3 pos = new Vector3(yPos, -xPos, 0);
+        //Corner Above
+        if(cornerMap[0,1] == 3 && cornerMap[2,1] != 3) {
+            //Wall is Left
+            if(cornerMap[1,0] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
+
+            //Wall is Right
+            if (cornerMap[1, 2] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+        }
+
+        //Corner Below
+        if (cornerMap[2, 1] == 3 && cornerMap[0, 1] != 3) {
+            //Wall is Left
+            if (cornerMap[1, 0] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
+
+            //Wall is Right
+            if (cornerMap[1, 2] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+        }
+
+        //Corner Right
+        if (cornerMap[1, 2] == 3 && cornerMap[1, 0] != 3) {
+            //Wall is Above
+            if (cornerMap[0, 1] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+
+            //Wall is Below
+            if (cornerMap[2, 1] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+        }
+
+        //Corner Left
+        if (cornerMap[1, 0] == 3 && cornerMap[1, 2] != 3) {
+            //Wall is Above
+            if (cornerMap[0, 1] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            }
+
+            //Wall is Below
+            if (cornerMap[2, 1] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
+        }
+
 
         //Bottom and Right
         if (cornerMap[2, 1] == 4 && cornerMap[1, 2] == 4 && cornerMap[1, 0] != 4 && cornerMap[0, 1] != 4) {
@@ -317,25 +371,40 @@ public class LevelGenerator : MonoBehaviour
         10 11 12
         20 21 22
         */
-        //Wall on Top
-        if (wallMap[0, 1] == 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //Maybe any time there is a pellet
+
+        //Corner Left or Right
+        if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
+            //Nothing Below
+            if (wallMap[2, 1] != 2) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+
+            //Nothing Above
+            if(wallMap[0, 1] != 2) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
         }
 
-        //Wall on Bottom
-        if (wallMap[2, 1] == 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //Corner Left Side
+        if(wallMap[1, 0] == 3) {
+
+        }
+        /*
+            //Corner left or right and nothing below
+        if (wallMap[2, 1] != 2) {
+            if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
+
+            }
         }
 
-        //Wall on Left
-        if (wallMap[1, 0] == 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-        }
+        //Corner left or right and nothing above
+        if (wallMap[0, 1] != 2) {
+            if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
 
-        //Wall on Right
-        if (wallMap[1, 2] == 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
         }
+        */
         /*
         //Sides Are Walls
         if (wallMap[1, 0] == 4 && wallMap[1, 2] == 4 && wallMap[2, 1] != 4 && wallMap[0, 1] != 4) {
