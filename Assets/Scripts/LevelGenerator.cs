@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-
+    /*
     int[,] levelMap = { 
         { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7 }, 
         { 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4 }, 
@@ -23,6 +23,38 @@ public class LevelGenerator : MonoBehaviour
         { 2, 2, 2, 2, 2, 1, 5, 3, 3, 0, 4, 0, 0, 0 }, 
         { 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 4, 0, 0, 0 },
     };
+    */
+    int[,] levelMap = {
+        { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 7 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,1 },
+        { 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 4, 4, 4, 3, 5, 4, 4 ,5 ,3 ,4 ,4 ,4 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 6, 4, 0, 0, 4, 5, 4, 0, 0, 0, 4, 5, 4, 4 ,5 ,4 ,0 ,0 ,0 ,4 ,5 ,4 ,0 ,0 ,4 ,6 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 4, 4, 4, 3, 5, 3, 3 ,5 ,3 ,4 ,4 ,4 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 3, 5, 3, 4, 4, 4, 4 ,4 ,4 ,3 ,5 ,3 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 4, 4, 5, 3, 4, 4, 3, 3 ,4 ,4 ,3 ,5 ,4 ,4 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 5, 5, 5, 5, 5, 4, 4, 5, 5, 5, 5, 4, 4 ,5 ,5 ,5 ,5 ,4 ,4 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 1, 2, 2, 2, 2, 1, 5, 4, 3, 4, 4, 3, 0, 4, 4 ,0 ,3 ,4 ,4 ,3 ,4 ,5 ,1 ,2 ,2 ,2 ,2 ,1 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 3, 4, 4, 3, 0, 3, 3 ,0 ,3 ,4 ,4 ,3 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 4, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,4 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 4, 0, 3, 4, 4, 0, 0 ,4 ,4 ,3 ,0 ,4 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 2, 2, 2, 2, 2, 1, 5, 3, 3, 0, 4, 0, 0, 0, 0 ,0 ,0 ,4 ,0 ,3 ,3 ,5 ,1 ,2 ,2 ,2 ,2 ,2 },
+        { 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 4, 0, 0, 0, 0 ,0 ,0 ,4 ,0 ,0 ,0 ,5 ,0 ,0 ,0 ,0 ,0 ,0 },
+        { 2, 2, 2, 2, 2, 1, 5, 3, 3, 0, 4, 0, 0, 0, 0 ,0 ,0 ,4 ,0 ,3 ,3 ,5 ,1 ,2 ,2 ,2 ,2 ,2 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 4, 0, 3, 4, 4, 0, 0 ,4 ,4 ,3 ,0 ,4 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 4, 0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,4 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 0, 0, 0, 0, 0, 2, 5, 4, 3, 4, 4, 3, 0, 3, 3 ,0 ,3 ,4 ,4 ,3 ,4 ,5 ,2 ,0 ,0 ,0 ,0 ,0 },
+        { 1, 2, 2, 2, 2, 1, 5, 4, 3, 4, 4, 3, 0, 4, 4 ,0 ,3 ,4 ,4 ,3 ,4 ,5 ,1 ,2 ,2 ,2 ,2 ,1 },
+        { 2, 5, 5, 5, 5, 5, 5, 4, 4, 5, 5, 5, 5, 4, 4 ,5 ,5 ,5 ,5 ,4 ,4 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 4, 4, 5, 3, 4, 4, 3, 3 ,4 ,4 ,3 ,5 ,4 ,4 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 3, 5, 3, 4, 4, 4, 4 ,4 ,4 ,3 ,5 ,3 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 4, 4, 4, 3, 5, 3, 3 ,5 ,3 ,4 ,4 ,4 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 6, 4, 0, 0, 4, 5, 4, 0, 0, 0, 4, 5, 4, 4 ,5 ,4 ,0 ,0 ,0 ,4 ,5 ,4 ,0 ,0 ,4 ,6 ,2 },
+        { 2, 5, 3, 4, 4, 3, 5, 3, 4, 4, 4, 3, 5, 4, 4 ,5 ,3 ,4 ,4 ,4 ,3 ,5 ,3 ,4 ,4 ,3 ,5 ,2 },
+        { 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,5 ,2 },
+        { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 7 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,2 ,1 }
+    };
 
     public GameObject[] tileList;
     public GameObject[,] tiles;
@@ -31,14 +63,14 @@ public class LevelGenerator : MonoBehaviour
     void Start()
     {
         //Array of Gameobjects rather than just the tilemap
-        tiles = new GameObject[14, 14];
+        tiles = new GameObject[levelMap.GetLength(0), levelMap.GetLength(1)];
         GameObject tile;
 
         string map = "";
 
         //Generation Pass
-        for (int x = 0; x < 14; x++) {
-            for (int y = 0; y < 14; y++) {
+        for (int x = 0; x < levelMap.GetLength(0); x++) {
+            for (int y = 0; y < levelMap.GetLength(1); y++) {
                 switch (levelMap[x, y]) {
                     case 0:
                         break;
@@ -93,8 +125,8 @@ public class LevelGenerator : MonoBehaviour
         }
         
         //Rotation Pass
-        for (int x = 0; x < 14; x++) {
-                for(int y = 0; y < 14; y++) {
+        for (int x = 0; x < levelMap.GetLength(0); x++) {
+                for(int y = 0; y < levelMap.GetLength(1); y++) {
                     switch (levelMap[x, y]){
                         case 0:
                             break;
@@ -119,12 +151,6 @@ public class LevelGenerator : MonoBehaviour
                             //Instantiate(tileList[2], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
                             //InstantiateWall(x, y, 4);
                             //Inside Wall
-                            break;
-                        case 5:
-                            //pellet
-                            break;
-                        case 6:
-                            //Power Pellet
                             break;
                         case 7:
                             //Instantiate(tileList[2], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
@@ -264,30 +290,38 @@ public class LevelGenerator : MonoBehaviour
                 tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             }
         }
-
-
+        
         //Bottom and Right
         if (cornerMap[2, 1] == 4 && cornerMap[1, 2] == 4 && cornerMap[1, 0] != 4 && cornerMap[0, 1] != 4) {
             tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            //Instantiate(tileList[3], pos, Quaternion.Euler(0f, 0f, 0f));
         }
 
         //Bottom and Left
-        if (cornerMap[2, 1] == 4 && cornerMap[1, 0] == 4 && cornerMap[1, 2] != 4 && cornerMap[0, 1] != 4) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-            //Instantiate(tileList[3], pos, Quaternion.Euler(0f, 0f, -90f));
+        if (cornerMap[2, 1] == 4 && cornerMap[1, 0] == 4) {
+            if(cornerMap[1,2] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            else {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            }
+
         }
 
         //Top and Right
-        if (cornerMap[0, 1] == 4 && cornerMap[1, 2] == 4 && cornerMap[1, 0] != 4 && cornerMap[2, 1] != 4) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            //Instantiate(tileList[3], pos, Quaternion.Euler(0f, 0f, 90f));
+        if (cornerMap[0, 1] == 4 && cornerMap[1, 2] == 4 ) {
+            if(cornerMap[1,0] == 4) {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+            else {
+                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
+
         }
         //Top and Left
         if (cornerMap[0, 1] == 4 && cornerMap[1, 0] == 4 && cornerMap[1, 2] != 4 && cornerMap[2, 1] != 4) {
             tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-            //Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 180f));
         }
+        
     }
 
     void RotateOuterWall(int xPos, int yPos) {
@@ -372,7 +406,6 @@ public class LevelGenerator : MonoBehaviour
         20 21 22
         */
         //Maybe any time there is a pellet
-
         //Corner Left or Right
         if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
             //Nothing Below
@@ -381,291 +414,61 @@ public class LevelGenerator : MonoBehaviour
             }
 
             //Nothing Above
-            if(wallMap[0, 1] != 2) {
+            if (wallMap[0, 1] != 2) {
                 tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             }
         }
+        
 
-        //Corner Left Side
-        if(wallMap[1, 0] == 3) {
-
-        }
-        /*
-            //Corner left or right and nothing below
-        if (wallMap[2, 1] != 2) {
-            if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
-
-            }
+        //USING PELLETS FOR CHECK
+        //Pellet Left
+        if (wallMap[1,0] == 5 || wallMap[1,0] == 6) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
-        //Corner left or right and nothing above
-        if (wallMap[0, 1] != 2) {
-            if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
-
-            }
+        //Pellet Right
+        if (wallMap[1, 2] == 5 || wallMap[1, 2] == 6) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 180f);
         }
-        */
-        /*
-        //Sides Are Walls
-        if (wallMap[1, 0] == 4 && wallMap[1, 2] == 4 && wallMap[2, 1] != 4 && wallMap[0, 1] != 4) {
+
+        //Pellet Top
+        if (wallMap[0, 1] == 5 || wallMap[0, 1] == 6) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 990f);
+        }
+
+        //Pellet Bellow
+        if (wallMap[2, 1] == 5 || wallMap[2, 1] == 6) {
             tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
 
-        //Top and Bottom Are Walls
-        if (wallMap[0, 1] == 4 && wallMap[2, 1] == 4 && wallMap[1, 0] != 4 && wallMap[1, 2] != 4) {
+        //NO PELLETS AVAIALBLE FOR CHECK
+        //Wall Left nothing Front
+        if (wallMap[1, 0] == 4 && wallMap[1, 2] == 0) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+
+        //Wall Right nothing Front
+        if (wallMap[1, 2] == 4 && wallMap[1, 0] == 0) {
             tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-
-        //Side Corners
-        if (wallMap[1, 0] == 3 || wallMap[1, 2] == 3) {
-            if (wallMap[0, 1] != 4 && wallMap[2, 1] != 4) {
-                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            }
+        //Wall Above nothing below
+        if (wallMap[0, 1] == 4 && wallMap[2, 1] == 0) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
 
-
-        //Top Corners
-        if (wallMap[0, 1] == 3 || wallMap[2, 1] == 3) {
-            if (wallMap[1, 0] != 4 && wallMap[1, 2] != 4) {
-                tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
+        //Wall belowing nothing above
+        if (wallMap[2, 1] == 4 && wallMap[0, 1] == 0) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
 
-        //Left Side is wall and Top and bottom are wall, front is not
-        if (wallMap[1, 0] == 4 && wallMap[0, 1] == 4 && wallMap[2, 1] == 4 && wallMap[1, 2] != 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        //wall left nothing right above or below
+        if (wallMap[1, 0] == 4 && wallMap[1, 2] == 0 && wallMap[0,1] == 0 && wallMap[2,1] ==0) {
+            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
 
-
-        //Right side is wall and top and bottom are wall, front is not
-        if (wallMap[1, 2] == 4 && wallMap[0, 1] == 4 && wallMap[2, 1] == 4 && wallMap[1, 0] != 2) {
-            tiles[xPos, yPos].transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        */
-        /*
-        //Top and Right
-        if (wallMap[0, 1] == counterPart && wallMap[1, 2] == counterPart && wallMap[1, 0] != counterPart && wallMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 90f));
-        }
-        //Top and Left
-        if (wallMap[0, 1] == counterPart && wallMap[1, 0] == counterPart && wallMap[1, 2] != counterPart && wallMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 180f));
-        }*/
-    }
-
-    //OLD
-    void InstantiateOuterCorner(int xPos, int yPos) {
-        int[,] cornerMap = new int[3, 3];
-        int xCount = -1;
-        int yCount = -1;
-
-        string array = "";
-        for (int x = 0; x < 3; x++) {
-
-            for (int y = 0; y < 3; y++) {
-
-                try {
-                    cornerMap[x, y] = levelMap[xPos + xCount, yPos + yCount];
-                }
-                catch (Exception e) {
-                    cornerMap[x, y] = 0;
-                }
-                array += "{" + cornerMap[x, y] + "}, ";
-                yCount++;
-            }
-            yCount = -1;
-            array += "\n";
-            xCount++;
-        }
-
-        /*
-        00 01 02
-        10 11 12
-        20 21 22
-        */
-
-        Vector3 pos = new Vector3(yPos, -xPos, 0);
-
-        //Bottom and Right
-        if (cornerMap[2, 1] == 2 && cornerMap[1, 2] == 2 && cornerMap[1, 0] != 2 && cornerMap[0, 1] != 2) {
-            Instantiate(tileList[1], pos, Quaternion.Euler(0f, 0f, 0f));
-        }
-
-        //Bottom and Left
-        if (cornerMap[2, 1] == 2 && cornerMap[1, 0] == 2 && cornerMap[1, 2] != 2 && cornerMap[0, 1] != 2) {
-            Instantiate(tileList[1], pos, Quaternion.Euler(0f, 0f, -90f));
-        }
-
-        //Top and Right
-        if (cornerMap[0, 1] == 2 && cornerMap[1, 2] == 2 && cornerMap[1, 0] != 2 && cornerMap[2, 1] != 2) {
-            Instantiate(tileList[1], pos, Quaternion.Euler(0f, 0f, 90f));
-        }
-        //Top and Left
-        if (cornerMap[0, 1] == 2 && cornerMap[1, 0] == 2 && cornerMap[1, 2] != 2 && cornerMap[2, 1] != 2) {
-            Instantiate(tileList[1], pos, Quaternion.Euler(0f, 0f, 180f));
-        }
-    }
-
-    void InstantiateCorner(int xPos, int yPos, int type) {
-        int[,] cornerMap = new int[3,3];
-        int xCount = -1;
-        int yCount = -1;
-
-        string array = "";
-        for (int x = 0; x < 3; x++) {
-
-            for (int y = 0; y < 3; y++) {
-
-                try {
-                    cornerMap[x, y] = levelMap[xPos + xCount, yPos + yCount];
-                } catch (Exception e) {
-                    cornerMap[x, y] = 0;
-                }
-                array += "{" + cornerMap[x, y] + "}, ";
-                yCount++;
-            }
-            yCount = -1;
-            array += "\n";
-            xCount++;
-        }
-        
+        //wall right nothing left
 
 
-
-        Debug.Log(array);
-
-
-        int counterPart = 0;
-        int tileType = 0;
-        Vector3 pos = new Vector3(yPos, -xPos, 0);
-
-        switch (type){
-            case 1:
-                counterPart = 2;
-                tileType = 1;
-                break;
-            case 3:
-                counterPart = 4;
-                tileType = 3;
-                break;
-        }
-
-        /*
-        00 01 02
-        10 11 12
-        20 21 22
-        */
-        //Bottom and Right
-        if (cornerMap[2, 1] == counterPart && cornerMap[1, 2] == counterPart && cornerMap[1,0] != counterPart && cornerMap[0, 1] != counterPart){
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 0f));
-        }
-
-        //Bottom and Left
-        if (cornerMap[2, 1] == counterPart && cornerMap[1, 0] == counterPart && cornerMap[1, 2] != counterPart && cornerMap[0, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, -90f));
-        }
-
-        //Top and Right
-        if (cornerMap[0, 1] == counterPart && cornerMap[1, 2] == counterPart && cornerMap[1, 0] != counterPart && cornerMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 90f));
-        }
-        //Top and Left
-        if (cornerMap[0, 1] == counterPart && cornerMap[1, 0] == counterPart && cornerMap[1, 2] != counterPart && cornerMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 180f));
-        }
-    }
-
-    void InstantiateWall(int xPos, int yPos, int type) {
-        int[,] wallMap = new int[3, 3];
-        int xCount = -1;
-        int yCount = -1;
-
-        string array = "";
-        for (int x = 0; x < 3; x++) {
-
-            for (int y = 0; y < 3; y++) {
-
-                try {
-                    wallMap[x, y] = levelMap[xPos + xCount, yPos + yCount];
-                }
-                catch (Exception e) {
-                    wallMap[x, y] = 0;
-                }
-                array += "{" + wallMap[x, y] + "}, ";
-                yCount++;
-            }
-            yCount = -1;
-            array += "\n";
-            xCount++;
-        }
-
-        int counterPart = 0;
-        int tileType = 0;
-        var cornerType = 0;
-        Vector3 pos = new Vector3(yPos, -xPos, 0);
-
-        switch (type) {
-            case 2:
-                counterPart = 2;
-                tileType = 0;
-                cornerType = 1;
-                break;
-            case 4:
-                counterPart = 4;
-                tileType = 2;
-                cornerType = 3;
-                break;
-        }
-
-        /*
-        00 01 02
-        10 11 12
-        20 21 22
-        */
-        //Sides Are Walls
-        if (wallMap[1, 0] == counterPart && wallMap[1, 2] == counterPart && wallMap[2, 1] != counterPart && wallMap[0, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 90f));
-        }
-
-        //Top and Bottom Are Walls
-        if (wallMap[0, 1] == counterPart && wallMap[2, 1] == counterPart && wallMap[1, 0] != counterPart && wallMap[1, 2] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 0));
-        }
-
-        //Side Corners
-        if(wallMap[1,0] == cornerType || wallMap[1,2] == cornerType) {
-            if(wallMap[0,1] != counterPart && wallMap[2,1] != counterPart) {
-                Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 90f));
-            }
-        }
-
-
-        //Top Corners
-        if (wallMap[0, 1] == cornerType || wallMap[2, 1] == cornerType) {
-            if (wallMap[1, 0] != counterPart && wallMap[1, 2] != counterPart) {
-                Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 0f));
-            }
-        }
-
-        //Left Side is wall and Top and bottom are wall, front is not
-        if(wallMap[1,0] == counterPart && wallMap[0,1] == counterPart && wallMap[2,1] == counterPart && wallMap[1,2] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 0f));
-        }
-
-
-        //Right side is wall and top and bottom are wall, front is not
-        if (wallMap[1, 2] == counterPart && wallMap[0, 1] == counterPart && wallMap[2, 1] == counterPart && wallMap[1, 0] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 0f));
-        }
-        /*
-        //Top and Right
-        if (wallMap[0, 1] == counterPart && wallMap[1, 2] == counterPart && wallMap[1, 0] != counterPart && wallMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 90f));
-        }
-        //Top and Left
-        if (wallMap[0, 1] == counterPart && wallMap[1, 0] == counterPart && wallMap[1, 2] != counterPart && wallMap[2, 1] != counterPart) {
-            Instantiate(tileList[tileType], pos, Quaternion.Euler(0f, 0f, 180f));
-        }*/
     }
 
     // Update is called once per frame
