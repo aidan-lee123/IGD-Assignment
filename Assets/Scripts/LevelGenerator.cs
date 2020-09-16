@@ -78,7 +78,7 @@ public class LevelGenerator : MonoBehaviour
                         break;
                     case 7:
                         //T Junction
-                        tile = (GameObject)Instantiate(tileList[2], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
+                        tile = (GameObject)Instantiate(tileList[4], new Vector3(y, -x, 0), Quaternion.identity, this.transform);
                         tile.name = levelMap[x, y].ToString();
                         tiles[x, y] = tile;
                         break;
