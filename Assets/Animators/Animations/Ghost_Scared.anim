@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pacman
+  m_Name: Ghost_Scared
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,25 +20,12 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 239494972691744609, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec,
-        type: 3}
-    - time: 0.1
-      value: {fileID: 2994704138005733638, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec,
-        type: 3}
-    - time: 0.2
-      value: {fileID: -3050139916046097037, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec,
-        type: 3}
-    - time: 0.3
-      value: {fileID: -5318070251316866350, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec,
-        type: 3}
-    - time: 0.4
-      value: {fileID: 3332535393522858203, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec,
-        type: 3}
+      value: {fileID: 21300000, guid: d197a79d136811c4ea52a81153e09bc5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 10
+  m_SampleRate: 1
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -53,17 +40,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 239494972691744609, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec, type: 3}
-    - {fileID: 2994704138005733638, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec, type: 3}
-    - {fileID: -3050139916046097037, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec, type: 3}
-    - {fileID: -5318070251316866350, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec, type: 3}
-    - {fileID: 3332535393522858203, guid: 4ad39367bd5629b4a9641f6cc0c3b4ec, type: 3}
+    - {fileID: 21300000, guid: d197a79d136811c4ea52a81153e09bc5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
