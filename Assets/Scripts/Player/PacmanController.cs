@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PacmanController : MonoBehaviour
 {
+    [SerializeField]
+    private Transform[] transformArray;
+
     // Start is called before the first frame update
     void Start()
     {
