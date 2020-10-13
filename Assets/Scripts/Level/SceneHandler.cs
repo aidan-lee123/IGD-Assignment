@@ -1,17 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
-public class SceneLoader : MonoBehaviour
+
+public class SceneHandler : MonoBehaviour
 {
-    public void LoadLevel1() {
-        Application.LoadLevel("Assignment_3");
+    public void LoadLevel(int level) {
+        SceneManager.LoadScene(level);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
