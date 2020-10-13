@@ -19,7 +19,7 @@ public class Tweener : MonoBehaviour
     {
 
         if (activeTween != null) {
-            Debug.Log(Vector3.Distance(activeTween.Target.position, activeTween.EndPos));
+            //Debug.Log(Vector3.Distance(activeTween.Target.position, activeTween.EndPos));
 
             if (Vector3.Distance(activeTween.Target.position, activeTween.EndPos) > 0.1f) {
 
