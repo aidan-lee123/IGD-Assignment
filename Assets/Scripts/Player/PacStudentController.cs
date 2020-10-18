@@ -6,16 +6,17 @@ public class PacStudentController : MonoBehaviour
 {
     //For Tweening
     private Tweener tweener;
-    private int[,] map;
+    public int[,] map;
 
     private KeyCode lastInput;
+    private KeyCode currentInput;
     private bool isMoving = false;
     // Start is called before the first frame update
     void Start()
     {
         tweener = GetComponent<Tweener>();
         map = GameObject.Find("Level Generator").GetComponent<LevelGenerator>().levelMap;
-
+        CheckDirection(KeyCode.None);
         this.transform.position = new Vector2(1, -1);
     }
 
@@ -23,27 +24,27 @@ public class PacStudentController : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W)) {
-            Debug.Log("W");
             lastInput = KeyCode.W;
+            //Move(lastInput);
         }
         if (Input.GetKeyDown(KeyCode.A)) {
-            Debug.Log("A");
             lastInput = KeyCode.A;
+            //Move(lastInput);
         }
         if (Input.GetKeyDown(KeyCode.S)) {
-            Debug.Log("S");
             lastInput = KeyCode.S;
+           // Move(lastInput);
         }
         if (Input.GetKeyDown(KeyCode.D)) {
-            Debug.Log("D");
             lastInput = KeyCode.D;
+            //Move(lastInput);
         }
-
+        
         if (!isMoving) {
             isMoving = true;
             Move(lastInput);
         }
-
+        
     }
 
     public void Move(KeyCode direction) {
@@ -56,16 +57,20 @@ public class PacStudentController : MonoBehaviour
 
         switch (direction) {
             case KeyCode.W:
-                tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0f), 1f);
+                if(CheckDirection(KeyCode.W))
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0f), 1f);
                 break;
             case KeyCode.A:
-                tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x - 1f, this.transform.position.y, 0f), 1f);
+                if(CheckDirection(KeyCode.A))
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x - 1f, this.transform.position.y, 0f), 1f);
                 break;
             case KeyCode.S:
-                tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1f, 0f), 1f);
+                if(CheckDirection(KeyCode.S))
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1f, 0f), 1f);
                 break;
             case KeyCode.D:
-                tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x + 1f, this.transform.position.y, 0f), 1f);
+                if(CheckDirection(KeyCode.D))
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x + 1f, this.transform.position.y, 0f), 1f);
                 break;
         }
 
@@ -75,10 +80,68 @@ public class PacStudentController : MonoBehaviour
     }
 
     public bool CheckDirection(KeyCode direction) {
-        bool clear = true;
+        bool clear = false;
+
+        int[,] surroundingMap = new int[3, 3];
+        int xCount = -1;
+        int yCount = -1;
+
+        string array = "";
+
+        int xPos = (int) this.transform.position.x;
+        int yPos = (int) this.transform.position.y;
+        for (int x = 0; x < 3; x++) {
+
+            for (int y = 0; y < 3; y++) {
+
+                try {
+                    //Gotta * by -1 otherwise map is upside down
+                    //I also messed up the way arrays work ages ago so x and y are swapped in every scenario
+                    //meaning i needed to swap it here to get it to work and that took me actually ages to figure out
+                    surroundingMap[x, y] = map[-yPos + xCount, xPos + yCount];
+                }
+                catch {
+                    surroundingMap[x, y] = 0;
+                }
+                array += "{" + surroundingMap[x, y] + "}, ";
+                yCount++;
+            }
+            yCount = -1;
+            array += "\n";
+            xCount++;
+        }
 
 
+        /*
+        00 01 02
+        10 11 12
+        20 21 22
+        */
 
+        switch (direction) {
+            case KeyCode.W:
+                if (surroundingMap[0, 1] == 5 || surroundingMap[0, 1] == 6 || surroundingMap[0, 1] == 0)
+                    clear = true;
+                    currentInput = direction;
+                break;
+            case KeyCode.A:
+                if (surroundingMap[1, 0] == 5 || surroundingMap[1, 0] == 6 || surroundingMap[1, 0] == 0)
+                    clear = true;
+                    currentInput = direction;
+                break;
+            case KeyCode.S:
+                if (surroundingMap[2, 1] == 5 || surroundingMap[2, 1] == 6 || surroundingMap[2, 1] == 0)
+                    clear = true;
+                    currentInput = direction;
+                break;
+            case KeyCode.D:
+                if (surroundingMap[1, 2] == 5 || surroundingMap[1, 2] == 6 || surroundingMap[1, 2] == 0)
+                    clear = true;
+                    currentInput = direction;
+                break;
+            default:
+                break;
+        }
         return clear;
     }
 }
