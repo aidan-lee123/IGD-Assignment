@@ -12,6 +12,8 @@ public class CherryController : MonoBehaviour
 
     public GameObject start;
     public GameObject end;
+
+    public int value = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,16 @@ public class CherryController : MonoBehaviour
         if(tweener.activeTween == null) {
             cherry.transform.position = new Vector3(-20, 5, 0);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.gameObject.tag == "Player") {
+
+
+
+        }
+
     }
 
     void SpawnCherry() {

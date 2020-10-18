@@ -12,7 +12,6 @@ public class Teleporter : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
 
         if(other.gameObject.tag == "Player") {
-            Debug.Log(other.gameObject.name);
             //Have to set tween to null otherwise it wont move
             other.gameObject.GetComponent<Tweener>().activeTween = null;
 
