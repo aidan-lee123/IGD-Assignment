@@ -71,20 +71,28 @@ public class PacStudentController : MonoBehaviour
 
         switch (direction) {
             case KeyCode.W:
-                if(CheckDirection(KeyCode.W))
+                if (CheckDirection(KeyCode.W)) {
+                    this.transform.rotation = Quaternion.Euler(0, 0, 90);
                     tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0f), speed);
+                }
                 break;
             case KeyCode.A:
-                if(CheckDirection(KeyCode.A))
+                if (CheckDirection(KeyCode.A)) {
+                    this.transform.rotation = Quaternion.Euler(0, 0, 180);
                     tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x - 1f, this.transform.position.y, 0f), speed);
+                }
                 break;
             case KeyCode.S:
-                if(CheckDirection(KeyCode.S))
+                if (CheckDirection(KeyCode.S)) {
+                    this.transform.rotation = Quaternion.Euler(0, 0, -90);
                     tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1f, 0f), speed);
+                }
                 break;
             case KeyCode.D:
-                if(CheckDirection(KeyCode.D))
+                if (CheckDirection(KeyCode.D)) {
+                    this.transform.rotation = Quaternion.Euler(0, 0, 0);
                     tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x + 1f, this.transform.position.y, 0f), speed);
+                }
                 break;
         }
 
