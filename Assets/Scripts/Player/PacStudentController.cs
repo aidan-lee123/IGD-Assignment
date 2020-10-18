@@ -11,6 +11,9 @@ public class PacStudentController : MonoBehaviour
     private KeyCode lastInput;
     private KeyCode currentInput;
     private bool isMoving = false;
+
+    //The lower the faster
+    public float speed = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,19 +72,19 @@ public class PacStudentController : MonoBehaviour
         switch (direction) {
             case KeyCode.W:
                 if(CheckDirection(KeyCode.W))
-                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0f), 1f);
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y + 1f, 0f), speed);
                 break;
             case KeyCode.A:
                 if(CheckDirection(KeyCode.A))
-                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x - 1f, this.transform.position.y, 0f), 1f);
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x - 1f, this.transform.position.y, 0f), speed);
                 break;
             case KeyCode.S:
                 if(CheckDirection(KeyCode.S))
-                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1f, 0f), 1f);
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x, this.transform.position.y - 1f, 0f), speed);
                 break;
             case KeyCode.D:
                 if(CheckDirection(KeyCode.D))
-                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x + 1f, this.transform.position.y, 0f), 1f);
+                    tweener.AddTween(this.transform, this.transform.position, new Vector3(this.transform.position.x + 1f, this.transform.position.y, 0f), speed);
                 break;
         }
 
