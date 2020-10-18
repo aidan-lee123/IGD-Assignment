@@ -23,6 +23,8 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.W)) {
             lastInput = KeyCode.W;
             //Move(lastInput);
@@ -39,10 +41,19 @@ public class PacStudentController : MonoBehaviour
             lastInput = KeyCode.D;
             //Move(lastInput);
         }
-        
+
+        if (currentInput == KeyCode.None) {
+            currentInput = lastInput;
+        }
+
         if (!isMoving) {
             isMoving = true;
-            Move(lastInput);
+            if (CheckDirection(lastInput) == true){
+                currentInput = lastInput;
+            }
+            //Debug.Log(currentInput);
+            Move(currentInput);
+
         }
         
     }
@@ -98,7 +109,7 @@ public class PacStudentController : MonoBehaviour
                     //Gotta * by -1 otherwise map is upside down
                     //I also messed up the way arrays work ages ago so x and y are swapped in every scenario
                     //meaning i needed to swap it here to get it to work and that took me actually ages to figure out
-                    surroundingMap[x, y] = map[-yPos + xCount, xPos + yCount];
+                    surroundingMap[x, y] = map[Mathf.FloorToInt(-yPos) + xCount, Mathf.FloorToInt(xPos) + yCount];
                 }
                 catch {
                     surroundingMap[x, y] = 0;
@@ -120,24 +131,28 @@ public class PacStudentController : MonoBehaviour
 
         switch (direction) {
             case KeyCode.W:
-                if (surroundingMap[0, 1] == 5 || surroundingMap[0, 1] == 6 || surroundingMap[0, 1] == 0)
+                if (surroundingMap[0, 1] == 5 || surroundingMap[0, 1] == 6 || surroundingMap[0, 1] == 0) {
                     clear = true;
                     currentInput = direction;
+                }
                 break;
             case KeyCode.A:
-                if (surroundingMap[1, 0] == 5 || surroundingMap[1, 0] == 6 || surroundingMap[1, 0] == 0)
+                if (surroundingMap[1, 0] == 5 || surroundingMap[1, 0] == 6 || surroundingMap[1, 0] == 0) {
                     clear = true;
                     currentInput = direction;
+                }
                 break;
             case KeyCode.S:
-                if (surroundingMap[2, 1] == 5 || surroundingMap[2, 1] == 6 || surroundingMap[2, 1] == 0)
+                if (surroundingMap[2, 1] == 5 || surroundingMap[2, 1] == 6 || surroundingMap[2, 1] == 0) {
                     clear = true;
                     currentInput = direction;
+                }
                 break;
             case KeyCode.D:
-                if (surroundingMap[1, 2] == 5 || surroundingMap[1, 2] == 6 || surroundingMap[1, 2] == 0)
+                if (surroundingMap[1, 2] == 5 || surroundingMap[1, 2] == 6 || surroundingMap[1, 2] == 0) {
                     clear = true;
                     currentInput = direction;
+                }
                 break;
             default:
                 break;

@@ -21,13 +21,13 @@ public class Tweener : MonoBehaviour
         if (activeTween != null) {
             //Debug.Log(Vector3.Distance(activeTween.Target.position, activeTween.EndPos));
 
-            if (Vector3.Distance(activeTween.Target.position, activeTween.EndPos) > 0.1f) {
+            if (Vector3.Distance(activeTween.Target.position, activeTween.EndPos) > 0.01f) {
 
                 float timeFraction = (Time.time - activeTween.StartTime) / activeTween.Duration;
                 activeTween.Target.position = Vector3.Lerp(activeTween.StartPos, activeTween.EndPos, timeFraction);
             }
 
-            if (Vector3.Distance(activeTween.Target.position, activeTween.EndPos) <= 0.1f) {
+            if (Vector3.Distance(activeTween.Target.position, activeTween.EndPos) <= 0.01f) {
                 activeTween.Target.position = activeTween.EndPos;
                 activeTween = null;
                 //Debug.Log("Lesser");
