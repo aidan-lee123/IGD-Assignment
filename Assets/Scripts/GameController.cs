@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [Header("Player Hud")]
+    public GameObject Player;
     public int PlayerScore = 0;
     public Text ScoreText;
     public int PlayerLives = 3;
@@ -14,6 +15,8 @@ public class GameController : MonoBehaviour
     public float GameSpeed = 1f;
     public Text GameTimeText;
     public Text CountdownText;
+    public Image[] PlayerHearts;
+    public Text GameOverText;
 
     [Header("Ghosts")]
     public Text GhostTimerText;
@@ -24,6 +27,8 @@ public class GameController : MonoBehaviour
     public AudioClip GhostScaredClip;
     public AudioSource MusicSource;
 
+    [Header("Other")]
+    public SceneHandler LevelHandler;
 
     // Start is called before the first frame update
     void Start() {
@@ -62,11 +67,31 @@ public class GameController : MonoBehaviour
         PlayerLives--;
         if(PlayerLives == 0) {
             //Game over
+            PlayerHearts[0].enabled = false;
+            StartCoroutine(GameOver());
+
         }
         else {
             //Remove a life heart from the bar
+            PlayerHearts[PlayerLives].enabled = false;
         }
     }
+    private IEnumerator GameOver() {
+        Time.timeScale = 0f;
+        //Bandaid to glitchy sound system
+        Player.GetComponent<AudioSource>().volume = 0f;
+        GameOverText.gameObject.SetActive(true);
+
+        float time = 3.5f;
+
+        while(time > 1) {
+            time -= Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        LevelHandler.LoadLevel(0);
+    }
+
     private IEnumerator GhostTimer(float amount) {
         Debug.Log("Ghost Timer Started");
         MusicSource.clip = GhostScaredClip;
