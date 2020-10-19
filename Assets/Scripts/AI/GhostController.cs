@@ -7,10 +7,15 @@ public class GhostController : MonoBehaviour
 
     public int state_no = 1;
 
+    GameController game;
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private void Awake() {
+        game = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
 
     // Update is called once per frame
@@ -24,7 +29,13 @@ public class GhostController : MonoBehaviour
     }
 
     public void Eaten() {
+        game.AddToScore(300);
+        StartCoroutine(GhostDead());
+    }
 
+    private IEnumerator GhostDead() {
+        yield return new WaitForSeconds(3);
+        state_no = 1;
     }
 
     public void SetState(int state) {
