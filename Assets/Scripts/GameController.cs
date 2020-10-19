@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
     }
 
     public void StartCountdown() {
+        //needs to be .5 because otherwise itll show 2 at the start rather than 3
         StartCoroutine(Countdown(3.5f));
 
     }

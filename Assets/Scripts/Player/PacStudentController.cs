@@ -223,13 +223,13 @@ public class PacStudentController : MonoBehaviour
             case KeyCode.W: {
                     if (surroundingMap[0, 1] == 5 || surroundingMap[0, 1] == 6) {
                         clear = true;
-                        audioSource.clip = pacStudentPellet;
+                        ChangeAudio(2);
                         currentInput = direction;
                     }
 
                     else if (surroundingMap[0, 1] == 0) {
                         clear = true;
-                        audioSource.clip = pacStudentMove;
+                        ChangeAudio(1);
                         currentInput = direction;
                     }
                     break;
@@ -237,12 +237,12 @@ public class PacStudentController : MonoBehaviour
             case KeyCode.A: {
                     if (surroundingMap[1, 0] == 5 || surroundingMap[1, 0] == 6) {
                         clear = true;
-                        audioSource.clip = pacStudentPellet;
+                        ChangeAudio(2);
                         currentInput = direction;
                     }
                     if (surroundingMap[1, 0] == 0) {
                         clear = true;
-                        audioSource.clip = pacStudentMove;
+                        ChangeAudio(1);
                         currentInput = direction;
                     }
                     break;
@@ -250,12 +250,12 @@ public class PacStudentController : MonoBehaviour
             case KeyCode.S: {
                     if (surroundingMap[2, 1] == 5 || surroundingMap[2, 1] == 6) {
                         clear = true;
-                        audioSource.clip = pacStudentPellet;
+                        ChangeAudio(2);
                         currentInput = direction;
                     }
                     if (surroundingMap[2, 1] == 0) {
                         clear = true;
-                        audioSource.clip = pacStudentMove;
+                        ChangeAudio(1);
                         currentInput = direction;
                     }
                     break;
@@ -263,12 +263,12 @@ public class PacStudentController : MonoBehaviour
             case KeyCode.D: {
                     if (surroundingMap[1, 2] == 5 || surroundingMap[1, 2] == 6) {
                         clear = true;
-                        audioSource.clip = pacStudentPellet;
+                        ChangeAudio(2);
                         currentInput = direction;
                     }
                     if (surroundingMap[1, 2] == 0) {
                         clear = true;
-                        audioSource.clip = pacStudentMove;
+                        ChangeAudio(1);
                         currentInput = direction;
                     }
                     break;
@@ -277,5 +277,32 @@ public class PacStudentController : MonoBehaviour
                 break;
         }
         return clear;
+    }
+
+    public void ChangeAudio(int clipNo) {
+        AudioClip clip = null;
+
+        switch (clipNo) {
+            case 1:
+                clip = pacStudentMove;
+                break;
+            case 2:
+                clip = pacStudentPellet;
+                break;
+        }
+
+        if(audioSource.clip != clip) {
+            audioSource.clip = clip;
+            Debug.Log("Changed Clip");
+        }
+        else if (audioSource.isPlaying == false) {
+            audioSource.clip = clip;
+            Debug.Log("Changed Clip");
+        }
+        else {
+           // Debug.Log("Clip already playing");
+        }
+
+        audioSource.Play();
     }
 }
