@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
+    [Header("Player Hud")]
     public int PlayerScore = 0;
     public Text ScoreText;
     public int PlayerLives = 3;
@@ -15,6 +15,10 @@ public class GameController : MonoBehaviour
     public Text GameTimeText;
     public Text CountdownText;
 
+    [Header("Ghosts")]
+    public Text GhostTimerText;
+    public GhostController[] Ghosts;
+    public AudioSource musicSource;
 
 
     // Start is called before the first frame update
@@ -44,6 +48,12 @@ public class GameController : MonoBehaviour
 
     }
 
+    //When a pellet is eaten then set each of the ghosts to be scared
+    public void PowerPelletEaten() {
+
+        StartCoroutine(GhostTimer(10.5f));
+    }
+
     public void RemoveLife() {
         PlayerLives--;
         if(PlayerLives == 0) {
@@ -53,7 +63,31 @@ public class GameController : MonoBehaviour
             //Remove a life heart from the bar
         }
     }
+    private IEnumerator GhostTimer(float amount) {
+        Debug.Log("Ghost Timer Started");
+        float time = amount;
+        GhostTimerText.gameObject.SetActive(true);
+        //Set them to scared
+        foreach (GhostController ghost in Ghosts) {
+            ghost.SetState(2);
+        }
 
+        while (time > 1) {
+            time -= Time.deltaTime;
+            GhostTimerText.text = "Ghost Timer: " + Mathf.FloorToInt(time).ToString();
+            yield return null;
+        }
+        //Need to set them to recovering a some point
+
+        //Set them to normal
+        foreach (GhostController ghost in Ghosts) {
+            ghost.SetState(1);
+        }
+        GhostTimerText.enabled = false;
+
+        Debug.Log("Ghost Timer Done");
+
+    }
     private IEnumerator Countdown(float amount) {
 
         float time = amount;
@@ -67,5 +101,6 @@ public class GameController : MonoBehaviour
         CountdownText.text = "GO!";
         yield return new WaitForSeconds(1);
         CountdownText.enabled = false;
+
     }
 }

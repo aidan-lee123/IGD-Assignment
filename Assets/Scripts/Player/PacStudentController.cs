@@ -18,6 +18,13 @@ public class PacStudentController : MonoBehaviour
 
     //The lower the faster
     public float speed = 1f;
+
+    GameController game;
+
+    private void Awake() {
+        game = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -304,5 +311,9 @@ public class PacStudentController : MonoBehaviour
         }
 
         audioSource.Play();
+    }
+
+    public void Hit() {
+        game.RemoveLife();
     }
 }

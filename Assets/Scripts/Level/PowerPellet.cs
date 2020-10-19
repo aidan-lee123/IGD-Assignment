@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class PowerPellet : MonoBehaviour
 {
-    //On Collide give a point to the player, this will respawn in 10 seconds.
+    GameController game;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Awake() {
+        game = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void OnTriggerEnter2D(Collider2D other) {
+
+        if (other.gameObject.tag == "Player") {
+
+            game.PowerPelletEaten();
+            Destroy(gameObject);
+        }
+
     }
+
 }
