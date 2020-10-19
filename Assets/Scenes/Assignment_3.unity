@@ -2407,6 +2407,12 @@ RectTransform:
   m_AnchoredPosition: {x: 629, y: 344.37912}
   m_SizeDelta: {x: 1258, y: 672}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1277695858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2405017990449496746, guid: 5917fd672f755214397542c189b1b0fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2405017990505677882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329947875
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,6 +3206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7cadcc62dc212d4a8b2151ba9dfaab4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 1277695858}
   PlayerScore: 0
   ScoreText: {fileID: 377102929}
   PlayerLives: 3

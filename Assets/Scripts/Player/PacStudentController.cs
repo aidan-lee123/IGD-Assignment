@@ -299,5 +299,7 @@ public class PacStudentController : MonoBehaviour
 
     public void Hit() {
         game.RemoveLife();
+        tweener.activeTween = null;
+        tweener.AddTween(this.transform, this.transform.position, new Vector3(1, -1, 0f), 0f);
     }
 }
