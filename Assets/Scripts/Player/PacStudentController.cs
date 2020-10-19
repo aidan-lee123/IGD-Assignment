@@ -287,30 +287,14 @@ public class PacStudentController : MonoBehaviour
     }
 
     public void ChangeAudio(int clipNo) {
-        AudioClip clip = null;
-
         switch (clipNo) {
             case 1:
-                clip = pacStudentMove;
+                audioSource.PlayOneShot(pacStudentMove, 0.7f);
                 break;
             case 2:
-                clip = pacStudentPellet;
+                audioSource.PlayOneShot(pacStudentPellet, 0.7f);
                 break;
         }
-
-        if(audioSource.clip != clip) {
-            audioSource.clip = clip;
-            Debug.Log("Changed Clip");
-        }
-        else if (audioSource.isPlaying == false) {
-            audioSource.clip = clip;
-            Debug.Log("Changed Clip");
-        }
-        else {
-           // Debug.Log("Clip already playing");
-        }
-
-        audioSource.Play();
     }
 
     public void Hit() {

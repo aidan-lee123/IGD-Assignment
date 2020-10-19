@@ -18,7 +18,11 @@ public class GameController : MonoBehaviour
     [Header("Ghosts")]
     public Text GhostTimerText;
     public GhostController[] Ghosts;
-    public AudioSource musicSource;
+
+    [Header("Audio")]
+    public AudioClip BackgroundClip;
+    public AudioClip GhostScaredClip;
+    public AudioSource MusicSource;
 
 
     // Start is called before the first frame update
@@ -65,6 +69,8 @@ public class GameController : MonoBehaviour
     }
     private IEnumerator GhostTimer(float amount) {
         Debug.Log("Ghost Timer Started");
+        MusicSource.clip = GhostScaredClip;
+        MusicSource.Play();
         float time = amount;
         GhostTimerText.gameObject.SetActive(true);
         //Set them to scared
@@ -84,7 +90,8 @@ public class GameController : MonoBehaviour
             ghost.SetState(1);
         }
         GhostTimerText.enabled = false;
-
+        MusicSource.clip = BackgroundClip;
+        MusicSource.Play();
         Debug.Log("Ghost Timer Done");
 
     }
